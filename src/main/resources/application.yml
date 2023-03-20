@@ -1,0 +1,39 @@
+
+
+
+spring:
+  application:
+    name: imgmt
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/installdb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: user1
+    password: aaaa
+
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.MySQL8Dialect
+
+logging:
+  level:
+    com:
+      example:
+        installmgmt: debug
+
+    org:
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+
+server:
+  port: 8081
+
+

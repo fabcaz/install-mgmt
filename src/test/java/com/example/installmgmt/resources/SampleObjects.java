@@ -1,10 +1,15 @@
 package com.example.installmgmt.resources;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 import com.example.installmgmt.domain.Address;
 import com.example.installmgmt.domain.Hardware;
+import com.example.installmgmt.domain.Install;
+import com.example.installmgmt.domain.InstallRequest;
+import com.example.installmgmt.domain.InstallRequestAppointment;
+import com.example.installmgmt.domain.InstallRequestType;
 import com.example.installmgmt.domain.Installer;
 import com.example.installmgmt.domain.Member;
 import com.example.installmgmt.domain.Node;
@@ -160,6 +165,168 @@ public class SampleObjects {
     .hardwareSet(Set.of(HARDWARE1, HARDWARE2))
     .build();
 
+  public static Node LAZY_NODE1 = Node.builder()
+    .id(1)
+    .installRequestId(1)
+    .status("ACTIVE")
+    .address(ADDRESS5)
+    .build();
+  
+  public static final Node LAZY_NODE2 = Node.builder()
+    .id(2)
+    .installRequestId(2)
+    .status("ACTIVE")
+    .address(ADDRESS4)
+    .build();
+  
+  public static final Node LAZY_NODE3 = Node.builder()
+    .id(3)
+    .installRequestId(3)
+    .status("ACTIVE")
+    .address(ADDRESS2)
+    .build();
 
   // ___INSTALL___
+  public static Install INSTALL1 = Install.builder()
+    .id(1)
+    .installRequestId(1)
+    .status("ACTIVE")
+    .address(ADDRESS5)
+    .hardwareSet(Set.of(HARDWARE3, HARDWARE4))
+    .node(NODE1)
+    .build();
+  
+  public static final Install INSTALL2 = Install.builder()
+    .id(2)
+    .installRequestId(2)
+    .status("ACTIVE")
+    .address(ADDRESS4)
+    .hardwareSet(Set.of(HARDWARE3, HARDWARE4))
+    .node(NODE2)
+    .build();
+  
+  public static final Install INSTALL3 = Install.builder()
+    .id(3)
+    .installRequestId(3)
+    .status("ACTIVE")
+    .address(ADDRESS1)
+    .hardwareSet(Set.of(HARDWARE3, HARDWARE4))
+    .node(NODE3)
+    .build();
+  
+  public static final Install INSTALL4 = Install.builder()
+    .id(4)
+    .installRequestId(4)
+    .status("ACTIVE")
+    .address(ADDRESS2)
+    .hardwareSet(Set.of(HARDWARE3, HARDWARE4))
+    .node(NODE3)
+    .build();
+  
+  //INSTALL_REQUEST_APPOINTMENT
+  
+  public static final InstallRequestAppointment INSTALL_REQUEST_APPOINTMENT_1 = InstallRequestAppointment.builder()
+    .id(1)
+    .installRequestId(5)
+    .selected(true)
+    .appointementStartTime(LocalDateTime.parse("2017-08-17T12:30:00"))
+    .appointementEndTime(LocalDateTime.parse("2017-08-17T14:30:00"))
+    .build();
+
+  public static final InstallRequestAppointment INSTALL_REQUEST_APPOINTMENT_2 = InstallRequestAppointment.builder()
+    .id(2)
+    .installRequestId(5)
+    .appointementStartTime(LocalDateTime.parse("2017-08-18T08:10:00"))
+    .appointementEndTime(LocalDateTime.parse("2017-08-18T10:10:00"))
+    .build();
+
+  public static final InstallRequestAppointment INSTALL_REQUEST_APPOINTMENT_3 = InstallRequestAppointment.builder()
+    .id(3)
+    .installRequestId(5)
+    .appointementStartTime(LocalDateTime.parse("2017-08-20T17:45:00"))
+    .appointementEndTime(LocalDateTime.parse("2017-08-20T20:45:00"))
+    .build();
+
+  //INSTALL_REQUEST
+
+  public static final InstallRequest INSTALL_REQUEST_1 = InstallRequest.builder()
+    .id(1)
+    .requestType(InstallRequestType.NODE)
+    .requesterPerson(JOHNV)
+    .address(ADDRESS5)
+    .leadInstaller(INSTALLER_JULIEA)
+    .requesterNotes("Note by JVm")
+    .leadNotes("Note by JAi1")
+    .floorNumber(3)
+    .requestedDate(LocalDate.parse("2015-02-22"))
+    .claimedDate(LocalDate.parse("2015-02-27"))
+    .completedDate(LocalDate.parse("2015-03-10"))
+    .hardwareSet(Set.of(HARDWARE1, HARDWARE2, HARDWARE3, HARDWARE4))
+    .assistantInstallerSet(Set.of(INSTALLER_TOMJ))
+    .build();
+
+  public static final InstallRequest INSTALL_REQUEST_2 = InstallRequest.builder()
+    .id(2)
+    .requestType(InstallRequestType.NODE)
+    .requesterPerson(PAULE)
+    .address(ADDRESS4)
+    .leadInstaller(INSTALLER_JULIEA)
+    .requesterNotes("Note by PEm")
+    .leadNotes("Note by JAi2")
+    .floorNumber(11)
+    .requestedDate(LocalDate.parse("2015-11-11"))
+    .claimedDate(LocalDate.parse("2015-11-14"))
+    .completedDate(LocalDate.parse("2015-11-22"))
+    .hardwareSet(Set.of(HARDWARE2, HARDWARE3, HARDWARE4))
+    .assistantInstallerSet(Set.of(INSTALLER_JOHNV))
+    .build();
+
+  public static final InstallRequest INSTALL_REQUEST_3 = InstallRequest.builder()
+    .id(3)
+    .requestType(InstallRequestType.DIY)
+    .requesterPerson(JULIEA)
+    .address(ADDRESS1)
+    .leadInstaller(INSTALLER_JULIEA)
+    .requesterNotes("Note by JAm")
+    .leadNotes("Note by JAi3")
+    .floorNumber(2)
+    .requestedDate(LocalDate.parse("2014-11-19"))
+    .claimedDate(LocalDate.parse("2014-11-19"))
+    .completedDate(LocalDate.parse("2014-11-19"))
+    .hardwareSet(Set.of(HARDWARE1, HARDWARE2, HARDWARE3, HARDWARE4))
+    .build();
+
+  public static final InstallRequest INSTALL_REQUEST_4 = InstallRequest.builder()
+    .id(4)
+    .requestType(InstallRequestType.CABLE_RUN)
+    .requesterPerson(ANTONY)
+    .address(ADDRESS2)
+    .leadInstaller(INSTALLER_JOHNV)
+    .requesterNotes("Note by AYm")
+    .leadNotes("Note by JVi1")
+    .floorNumber(5)
+    .requestedDate(LocalDate.parse("2017-07-07"))
+    .claimedDate(LocalDate.parse("2017-07-10"))
+    .completedDate(LocalDate.parse("2017-07-12"))
+    .hardwareSet(Set.of(HARDWARE3, HARDWARE4))
+    .assistantInstallerSet(Set.of(INSTALLER_TOMJ))
+    .build();
+
+  //no los because is cablerun
+  public static final InstallRequest INSTALL_REQUEST_5 = InstallRequest.builder()
+    .id(5)
+    .requestType(InstallRequestType.CABLE_RUN)
+    .requesterPerson(JULIEA)
+    .address(ADDRESS3)
+    .leadInstaller(INSTALLER_JOHNV)
+    .requesterNotes("Note by JAm2")
+    .leadNotes("Note by JVi2")
+    .floorNumber(5)
+    .requestedDate(LocalDate.parse("2017-08-12"))
+    .claimedDate(LocalDate.parse("2017-08-13"))
+    .completedDate(null)
+    .hardwareSet(Set.of(HARDWARE3, HARDWARE4))
+    .preferedAppointmentTimes(Set.of(INSTALL_REQUEST_APPOINTMENT_1, INSTALL_REQUEST_APPOINTMENT_2, INSTALL_REQUEST_APPOINTMENT_3))
+    .build();
+
 }

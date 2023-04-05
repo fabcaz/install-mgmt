@@ -2,7 +2,11 @@ package com.example.installmgmt.domain;
 
 import java.time.LocalDate;
 
+import com.example.installmgmt.converters.InstallerStatusConverter;
+import com.example.installmgmt.value.InstallerStatus;
+
 import jakarta.persistence.Column;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,6 +17,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -44,11 +49,11 @@ public class Installer{
   @Column(name = "role_given_date", nullable = false)
   private LocalDate roleGivenDate;
 
-  @NotBlank
-  @Size(min = 1)
-  @Size(max = 10)
+  @NotNull
+  @Positive
+  @Convert( converter = InstallerStatusConverter.class )
   @Column(name = "type", nullable=false)
-  private String status;
+  private InstallerStatus status;
 
   public String getInstallerFullName(){
     return String.join(" ", this.person.getFirstName(), this.person.getLastName());

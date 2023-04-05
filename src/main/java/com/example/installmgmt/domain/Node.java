@@ -49,14 +49,3 @@ public class Node{
   private String status;
 
 }
-/*
-@Getter
-@Setter
-@EqualsAndHashCode
-@Value
-@NoArgsConstructor
-@RequiredArgsConstructor
-@AllArgsConstructor
-@Builder
-@Entity
-* */

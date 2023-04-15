@@ -15,6 +15,7 @@ import com.example.installmgmt.domain.Member;
 import com.example.installmgmt.domain.Node;
 import com.example.installmgmt.domain.Person;
 import com.example.installmgmt.value.InstallerStatus;
+import com.example.installmgmt.value.MemberStatus;
 
 public class SampleObjects {
   
@@ -88,7 +89,7 @@ public class SampleObjects {
     .id(1)
     .person(JOHNV)
     .roleGivenDate(LocalDate.parse("2015-03-10"))
-    .status("ACTIVE")
+    .status(MemberStatus.ACTIVE)
     .build();
   
   public static final Member MEMBER_PAULE  =
@@ -96,7 +97,7 @@ public class SampleObjects {
     .id(2)
     .person(PAULE)
     .roleGivenDate(LocalDate.parse("2015-11-22"))
-    .status("ACTIVE")
+    .status(MemberStatus.ACTIVE)
     .build();
   
   public static final Member MEMBER_JULIEA =
@@ -104,7 +105,7 @@ public class SampleObjects {
     .id(3)
     .person(JULIEA)
     .roleGivenDate(LocalDate.parse("2014-11-19"))
-    .status("ACTIVE")
+    .status(MemberStatus.ACTIVE)
     .build();
 
   public static final Member MEMBER_ANTONY =
@@ -112,7 +113,7 @@ public class SampleObjects {
     .id(4)
     .person(ANTONY)
     .roleGivenDate(LocalDate.parse("2017-07-12"))
-    .status("ACTIVE")
+    .status(MemberStatus.ACTIVE)
     .build();
 
   // ___INSTALLER___

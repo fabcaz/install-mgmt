@@ -37,7 +37,7 @@ public class Person{
   @Column(name = "slack_id")
   String slackId;
 
-  @Pattern(regexp = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$")
+  @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")
   @Column(name = "email", nullable = false)
   String email;
 

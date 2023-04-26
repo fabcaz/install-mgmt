@@ -2,8 +2,15 @@ package com.example.installmgmt.resources;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
+import com.example.installmgmt.dtos.AddressDto;
+import com.example.installmgmt.dtos.HardwareDto;
+import com.example.installmgmt.dtos.InstallRequestAppointmentDto;
+import com.example.installmgmt.dtos.NewInstallRequestDto;
+import com.example.installmgmt.dtos.NodeDto;
+import com.example.installmgmt.dtos.PersonDto;
 import com.example.installmgmt.domain.Address;
 import com.example.installmgmt.domain.Hardware;
 import com.example.installmgmt.domain.Install;
@@ -33,8 +40,6 @@ public class SampleObjects {
   public static final String SAMPLE_ROOSST_STREETADDRESS = "789 Roos Street";
   public static final int SAMPLE_ROOSST_ZIPCODE = 10044;
 
-  
-
   public static final Address ADDRESS1 = Address.builder().id(1)
     .aptUnitNumber("apt 2h").streetAddress(SAMPLE_MAINST_STREETADDRESS)
     .city(CITY).state(STATE).zipcode(SAMPLE_MAINST_ZIPCODE)
@@ -60,6 +65,34 @@ public class SampleObjects {
     .city(CITY).state(STATE).zipcode(SAMPLE_ROOSST_ZIPCODE)
     .build();
 
+  // to verify convertion
+  public static final Address ADDRESS_DTO2ENTITY_1 = Address.builder().id(null)
+    .aptUnitNumber("apt 3b").streetAddress(SAMPLE_ROOSST_STREETADDRESS)
+    .city(CITY).state(STATE).zipcode(SAMPLE_ROOSST_ZIPCODE)
+    .build();
+
+  //ADDRESS_DTO
+  public static final AddressDto ADDRESS_DTO_1;
+  public static final AddressDto ADDRESS_DTO_5;
+
+  static{
+    ADDRESS_DTO_1 = new AddressDto();
+    ADDRESS_DTO_1.setId(null);
+    ADDRESS_DTO_1.setAptUnitNumber("apt 3b");
+    ADDRESS_DTO_1.setStreetAddress(SAMPLE_ROOSST_STREETADDRESS);
+    ADDRESS_DTO_1.setCity(CITY);
+    ADDRESS_DTO_1.setState(STATE);
+    ADDRESS_DTO_1.setZipcode(SAMPLE_ROOSST_ZIPCODE);
+
+    ADDRESS_DTO_5 = new AddressDto();
+    ADDRESS_DTO_5.setId(5);
+    ADDRESS_DTO_5.setAptUnitNumber("apt 3a");
+    ADDRESS_DTO_5.setStreetAddress(SAMPLE_ROOSST_STREETADDRESS);
+    ADDRESS_DTO_5.setCity(CITY);
+    ADDRESS_DTO_5.setState(STATE);
+    ADDRESS_DTO_5.setZipcode(SAMPLE_ROOSST_ZIPCODE);
+  }
+
   //__HARDWARE__
   public static final String ANTENNA         = "antenna";
   public static final String OUTDOORROUTER   = "outdoor-router";
@@ -74,6 +107,36 @@ public class SampleObjects {
   public static final Hardware HARDWARE4 = Hardware.builder().id(4).name(RJ45).build();
   public static final Hardware HARDWARE5 = Hardware.builder().id(5).name(OUTDOORETHCABLE).build();
 
+  //__HARDWARE_DTO__
+  public static final HardwareDto HARDWARE_DTO_1;
+  public static final HardwareDto HARDWARE_DTO_2;
+  public static final HardwareDto HARDWARE_DTO_3;
+  public static final HardwareDto HARDWARE_DTO_4;
+  public static final HardwareDto HARDWARE_DTO_5;
+
+  static{
+    HARDWARE_DTO_1 = new HardwareDto();
+    HARDWARE_DTO_2 = new HardwareDto();
+    HARDWARE_DTO_3 = new HardwareDto();
+    HARDWARE_DTO_4 = new HardwareDto();
+    HARDWARE_DTO_5 = new HardwareDto();
+
+    HARDWARE_DTO_1.setId(1);
+    HARDWARE_DTO_1.setName(ANTENNA);
+
+    HARDWARE_DTO_2.setId(2);
+    HARDWARE_DTO_2.setName(OUTDOORROUTER);
+    
+    HARDWARE_DTO_3.setId(3);
+    HARDWARE_DTO_3.setName(INDOORROUTER);
+    
+    HARDWARE_DTO_4.setId(4);
+    HARDWARE_DTO_4.setName(RJ45);
+    
+    HARDWARE_DTO_5.setId(5);
+    HARDWARE_DTO_5.setName(OUTDOORETHCABLE);
+  }
+
   // ___PERSON___
   public static final String EMAIL_DOMAIN = "@domain.com";
 
@@ -83,6 +146,74 @@ public class SampleObjects {
   public static final Person JULIEA = new Person(4, "Julie", "Ah", "QWE", "JAh"+EMAIL_DOMAIN, "2583691743");
   public static final Person ANTONY = new Person(5, "Anton", "Yo", "RTY", "AYo"+EMAIL_DOMAIN, "1597534682");
 
+  // __PERSON_COMMAND__
+
+  public static final PersonDto JOHNV_COMMAND;
+  public static final PersonDto TOMJ_COMMAND;
+  public static final PersonDto PAULE_COMMAND;
+  public static final PersonDto JULIEA_COMMAND;
+  public static final PersonDto ANTONY_COMMAND;
+  public static final PersonDto VALID_UNREGISTERED_USER_COMMAND;
+  public static final PersonDto INVALID_UNREGISTERED_USER_COMMAND;
+
+  static {
+    JOHNV_COMMAND = new PersonDto();
+    TOMJ_COMMAND = new PersonDto();
+    PAULE_COMMAND = new PersonDto();
+    JULIEA_COMMAND = new PersonDto();
+    ANTONY_COMMAND = new PersonDto();
+    VALID_UNREGISTERED_USER_COMMAND = new PersonDto();
+    INVALID_UNREGISTERED_USER_COMMAND = new PersonDto();
+
+    JOHNV_COMMAND.setId(JOHNV.getId());
+    JOHNV_COMMAND.setFirstName(JOHNV.getFirstName());
+    JOHNV_COMMAND.setLastName(JOHNV.getLastName());
+    JOHNV_COMMAND.setSlackId(JOHNV.getSlackId());
+    JOHNV_COMMAND.setEmail(JOHNV.getEmail());
+    JOHNV_COMMAND.setPhoneNumber(JOHNV.getPhoneNumber());
+
+    TOMJ_COMMAND.setId(TOMJ.getId());
+    TOMJ_COMMAND.setFirstName(TOMJ.getFirstName());
+    TOMJ_COMMAND.setLastName(TOMJ.getLastName());
+    TOMJ_COMMAND.setSlackId(TOMJ.getSlackId());
+    TOMJ_COMMAND.setEmail(TOMJ.getEmail());
+    TOMJ_COMMAND.setPhoneNumber(TOMJ.getPhoneNumber());
+
+    PAULE_COMMAND.setId(PAULE.getId());
+    PAULE_COMMAND.setFirstName(PAULE.getFirstName());
+    PAULE_COMMAND.setLastName(PAULE.getLastName());
+    PAULE_COMMAND.setSlackId(PAULE.getSlackId());
+    PAULE_COMMAND.setEmail(PAULE.getEmail());
+    PAULE_COMMAND.setPhoneNumber(PAULE.getPhoneNumber());
+
+    JULIEA_COMMAND.setId(JULIEA.getId());
+    JULIEA_COMMAND.setFirstName(JULIEA.getFirstName());
+    JULIEA_COMMAND.setLastName(JULIEA.getLastName());
+    JULIEA_COMMAND.setSlackId(JULIEA.getSlackId());
+    JULIEA_COMMAND.setEmail(JULIEA.getEmail());
+    JULIEA_COMMAND.setPhoneNumber(JULIEA.getPhoneNumber());
+
+    ANTONY_COMMAND.setId(ANTONY.getId());
+    ANTONY_COMMAND.setFirstName(ANTONY.getFirstName());
+    ANTONY_COMMAND.setLastName(ANTONY.getLastName());
+    ANTONY_COMMAND.setSlackId(ANTONY.getSlackId());
+    ANTONY_COMMAND.setEmail(ANTONY.getEmail());
+    ANTONY_COMMAND.setPhoneNumber(ANTONY.getPhoneNumber());
+
+    VALID_UNREGISTERED_USER_COMMAND.setId(777); // no validation
+    VALID_UNREGISTERED_USER_COMMAND.setFirstName("Daniel");
+    VALID_UNREGISTERED_USER_COMMAND.setLastName("Seven");
+    VALID_UNREGISTERED_USER_COMMAND.setSlackId(""); // no validation
+    VALID_UNREGISTERED_USER_COMMAND.setEmail("luxury@cars.com");
+    VALID_UNREGISTERED_USER_COMMAND.setPhoneNumber("2127777777");
+
+    INVALID_UNREGISTERED_USER_COMMAND.setId(999); // no validation
+    INVALID_UNREGISTERED_USER_COMMAND.setFirstName("E");
+    INVALID_UNREGISTERED_USER_COMMAND.setLastName("2DAYSSSSSSSSSSSSSSSSSSSS");
+    INVALID_UNREGISTERED_USER_COMMAND.setSlackId(""); // no validation
+    INVALID_UNREGISTERED_USER_COMMAND.setEmail("badEmail.ew");
+    INVALID_UNREGISTERED_USER_COMMAND.setPhoneNumber("1800588230");
+  }
   // ___MEMBER___
   public static final Member MEMBER_JOHNV =
     Member.builder()
@@ -188,6 +319,18 @@ public class SampleObjects {
     .address(ADDRESS2)
     .build();
 
+  //NODE_DTO
+  public static NodeDto NODE_DTO_1;
+
+  static{
+    NODE_DTO_1 = new NodeDto();
+    NODE_DTO_1.setId(1);
+    NODE_DTO_1.setInstallRequestId(1);
+    NODE_DTO_1.setStatus("ACTIVE");
+    NODE_DTO_1.setAddress(ADDRESS_DTO_5);
+    NODE_DTO_1.setHardware(List.of(HARDWARE_DTO_1, HARDWARE_DTO_2));
+  }
+
   // ___INSTALL___
   public static Install INSTALL1 = Install.builder()
     .id(1)
@@ -248,6 +391,42 @@ public class SampleObjects {
     .appointementStartTime(LocalDateTime.parse("2017-08-20T17:45:00"))
     .appointementEndTime(LocalDateTime.parse("2017-08-20T20:45:00"))
     .build();
+
+  public static final InstallRequestAppointment INSTALL_REQUEST_APPOINTMENT_DTO2ENTITY_1 
+    = InstallRequestAppointment.builder()
+    .id(null)
+    .installRequestId(null)
+    .appointementStartTime(LocalDateTime.parse("2027-08-20T17:45:00"))
+    .appointementEndTime(LocalDateTime.parse("2027-08-20T20:45:00"))
+    .build();
+
+  public static final InstallRequestAppointment INSTALL_REQUEST_APPOINTMENT_DTO2ENTITY_2 
+    = InstallRequestAppointment.builder()
+    .id(null)
+    .installRequestId(null)
+    .appointementStartTime(LocalDateTime.parse("2027-08-21T17:45:00"))
+    .appointementEndTime(LocalDateTime.parse("2027-08-21T20:45:00"))
+    .build();
+
+  //INSTALL_REQUEST_APPOINTMENT_DTO
+  public static final InstallRequestAppointmentDto INSTALL_REQUEST_APPOINTMENT_DTO_1;
+  public static final InstallRequestAppointmentDto INSTALL_REQUEST_APPOINTMENT_DTO_2;
+
+  static{
+
+    INSTALL_REQUEST_APPOINTMENT_DTO_1 = new InstallRequestAppointmentDto();
+    INSTALL_REQUEST_APPOINTMENT_DTO_1.setId(null);
+    INSTALL_REQUEST_APPOINTMENT_DTO_1.setInstallRequestId(null);
+    INSTALL_REQUEST_APPOINTMENT_DTO_1.setAppointementStartTime(LocalDateTime.parse("2027-08-20T17:45:00"));
+    INSTALL_REQUEST_APPOINTMENT_DTO_1.setAppointementEndTime(LocalDateTime.parse("2027-08-20T20:45:00"));
+
+    INSTALL_REQUEST_APPOINTMENT_DTO_2 = new InstallRequestAppointmentDto();
+    INSTALL_REQUEST_APPOINTMENT_DTO_2.setId(null);
+    INSTALL_REQUEST_APPOINTMENT_DTO_2.setInstallRequestId(null);
+    INSTALL_REQUEST_APPOINTMENT_DTO_2.setAppointementStartTime(LocalDateTime.parse("2027-08-21T17:45:00"));
+    INSTALL_REQUEST_APPOINTMENT_DTO_2.setAppointementEndTime(LocalDateTime.parse("2027-08-21T20:45:00"));
+
+  }
 
   //INSTALL_REQUEST
 
@@ -330,5 +509,21 @@ public class SampleObjects {
     .hardwareSet(Set.of(HARDWARE3, HARDWARE4))
     .preferedAppointmentTimes(Set.of(INSTALL_REQUEST_APPOINTMENT_1, INSTALL_REQUEST_APPOINTMENT_2, INSTALL_REQUEST_APPOINTMENT_3))
     .build();
+
+  //NEW_INSTALL_REQUEST_DTO
+  public static final NewInstallRequestDto NEW_INSTALL_REQUEST_DTO_1;
+
+  static{
+    NEW_INSTALL_REQUEST_DTO_1 = new NewInstallRequestDto();
+
+    NEW_INSTALL_REQUEST_DTO_1.setRequestType(InstallRequestType.CABLE_RUN.installTypeName());
+    NEW_INSTALL_REQUEST_DTO_1.setRequesterPersonId(JOHNV_COMMAND.getId());
+    NEW_INSTALL_REQUEST_DTO_1.setAddress(ADDRESS_DTO_1);
+    NEW_INSTALL_REQUEST_DTO_1.setRequesterNotes("new install request dto 1 notes");
+    NEW_INSTALL_REQUEST_DTO_1.setFloorNumber(3);
+    NEW_INSTALL_REQUEST_DTO_1.setPreferedAppointmentTimes(List.of(INSTALL_REQUEST_APPOINTMENT_DTO_1, INSTALL_REQUEST_APPOINTMENT_DTO_2));
+    NEW_INSTALL_REQUEST_DTO_1.setNodesLos(List.of(NODE_DTO_1.getId()));
+
+  }
 
 }

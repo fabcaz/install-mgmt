@@ -2,12 +2,14 @@ package com.example.installmgmt.converters.dtoConverters;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Component;
 
 import com.example.installmgmt.domain.InstallRequestAppointment;
 import com.example.installmgmt.dtos.InstallRequestAppointmentDto;
 
 import lombok.Synchronized;
 
+@Component
 public class InstallRequestAppointment2InstallRequestAppointmentDto implements Converter<InstallRequestAppointment, InstallRequestAppointmentDto> {
 
   @Synchronized

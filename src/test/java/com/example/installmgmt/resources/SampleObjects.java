@@ -7,7 +7,10 @@ import java.util.Set;
 
 import com.example.installmgmt.dtos.AddressDto;
 import com.example.installmgmt.dtos.HardwareDto;
+import com.example.installmgmt.dtos.InstallParticipantDto;
 import com.example.installmgmt.dtos.InstallRequestAppointmentDto;
+import com.example.installmgmt.dtos.InstallRequestDto;
+import com.example.installmgmt.dtos.InstallerDto;
 import com.example.installmgmt.dtos.NewInstallRequestDto;
 import com.example.installmgmt.dtos.NodeDto;
 import com.example.installmgmt.dtos.PersonDto;
@@ -40,57 +43,73 @@ public class SampleObjects {
   public static final String SAMPLE_ROOSST_STREETADDRESS = "789 Roos Street";
   public static final int SAMPLE_ROOSST_ZIPCODE = 10044;
 
+  public static final String ADDRESS1_APT = "apt 2h";
+  public static final String ADDRESS2_APT = "apt 5b";
+  public static final String ADDRESS3_APT = "apt 5c";
+  public static final String ADDRESS4_APT = "apt 1102";
+  public static final String ADDRESS5_APT = "apt 3a";
+  public static final String ADDRESS6_APT = "apt 3b";
+
   public static final Address ADDRESS1 = Address.builder().id(1)
-    .aptUnitNumber("apt 2h").streetAddress(SAMPLE_MAINST_STREETADDRESS)
+    .aptUnitNumber(ADDRESS1_APT).streetAddress(SAMPLE_MAINST_STREETADDRESS)
     .city(CITY).state(STATE).zipcode(SAMPLE_MAINST_ZIPCODE)
     .build();
 
   public static final Address ADDRESS2 = Address.builder().id(2)
-    .aptUnitNumber("apt 5b").streetAddress(SAMPLE_MAINST_STREETADDRESS)
+    .aptUnitNumber(ADDRESS2_APT).streetAddress(SAMPLE_MAINST_STREETADDRESS)
     .city(CITY).state(STATE).zipcode(SAMPLE_MAINST_ZIPCODE)
     .build();
 
   public static final Address ADDRESS3 = Address.builder().id(3)
-    .aptUnitNumber("apt 5c").streetAddress(SAMPLE_MAINST_STREETADDRESS)
+    .aptUnitNumber(ADDRESS3_APT).streetAddress(SAMPLE_MAINST_STREETADDRESS)
     .city(CITY).state(STATE).zipcode(SAMPLE_MAINST_ZIPCODE)
     .build();
 
   public static final Address ADDRESS4 = Address.builder().id(4)
-    .aptUnitNumber("apt 1102").streetAddress(SAMPLE_BRIDGEST_STREETADDRESS)
+    .aptUnitNumber(ADDRESS4_APT).streetAddress(SAMPLE_BRIDGEST_STREETADDRESS)
     .city(CITY).state(STATE).zipcode(SAMPLE_BRIDGEST_ZIPCODE)
     .build();
 
   public static final Address ADDRESS5 = Address.builder().id(5)
-    .aptUnitNumber("apt 3a").streetAddress(SAMPLE_ROOSST_STREETADDRESS)
+    .aptUnitNumber(ADDRESS5_APT).streetAddress(SAMPLE_ROOSST_STREETADDRESS)
     .city(CITY).state(STATE).zipcode(SAMPLE_ROOSST_ZIPCODE)
     .build();
 
-  // to verify convertion
-  public static final Address ADDRESS_DTO2ENTITY_1 = Address.builder().id(null)
-    .aptUnitNumber("apt 3b").streetAddress(SAMPLE_ROOSST_STREETADDRESS)
+  // to verify convertion - represents ADDRESS6 (new, not persisted)
+  public static final Address ADDRESS_DTO2ENTITY_6 = Address.builder().id(null)
+    .aptUnitNumber(ADDRESS6_APT).streetAddress(SAMPLE_ROOSST_STREETADDRESS)
     .city(CITY).state(STATE).zipcode(SAMPLE_ROOSST_ZIPCODE)
     .build();
 
-  //ADDRESS_DTO
-  public static final AddressDto ADDRESS_DTO_1;
+  //__ADDRESS_DTO__
+  public static final AddressDto ADDRESS_DTO_6;
+  public static final AddressDto ADDRESS_DTO_3;
   public static final AddressDto ADDRESS_DTO_5;
 
   static{
-    ADDRESS_DTO_1 = new AddressDto();
-    ADDRESS_DTO_1.setId(null);
-    ADDRESS_DTO_1.setAptUnitNumber("apt 3b");
-    ADDRESS_DTO_1.setStreetAddress(SAMPLE_ROOSST_STREETADDRESS);
-    ADDRESS_DTO_1.setCity(CITY);
-    ADDRESS_DTO_1.setState(STATE);
-    ADDRESS_DTO_1.setZipcode(SAMPLE_ROOSST_ZIPCODE);
+    ADDRESS_DTO_6 = new AddressDto();
+    ADDRESS_DTO_6.setId(null);
+    ADDRESS_DTO_6.setAptUnitNumber(ADDRESS6_APT);
+    ADDRESS_DTO_6.setStreetAddress(SAMPLE_ROOSST_STREETADDRESS);
+    ADDRESS_DTO_6.setCity(CITY);
+    ADDRESS_DTO_6.setState(STATE);
+    ADDRESS_DTO_6.setZipcode(SAMPLE_ROOSST_ZIPCODE);
 
     ADDRESS_DTO_5 = new AddressDto();
     ADDRESS_DTO_5.setId(5);
-    ADDRESS_DTO_5.setAptUnitNumber("apt 3a");
+    ADDRESS_DTO_5.setAptUnitNumber(ADDRESS5_APT);
     ADDRESS_DTO_5.setStreetAddress(SAMPLE_ROOSST_STREETADDRESS);
     ADDRESS_DTO_5.setCity(CITY);
     ADDRESS_DTO_5.setState(STATE);
     ADDRESS_DTO_5.setZipcode(SAMPLE_ROOSST_ZIPCODE);
+
+    ADDRESS_DTO_3 = new AddressDto();
+    ADDRESS_DTO_3.setId(3);
+    ADDRESS_DTO_3.setAptUnitNumber(ADDRESS3_APT);
+    ADDRESS_DTO_3.setStreetAddress(SAMPLE_MAINST_STREETADDRESS);
+    ADDRESS_DTO_3.setCity(CITY);
+    ADDRESS_DTO_3.setState(STATE);
+    ADDRESS_DTO_3.setZipcode(SAMPLE_MAINST_ZIPCODE);
   }
 
   //__HARDWARE__
@@ -214,6 +233,42 @@ public class SampleObjects {
     INVALID_UNREGISTERED_USER_COMMAND.setEmail("badEmail.ew");
     INVALID_UNREGISTERED_USER_COMMAND.setPhoneNumber("1800588230");
   }
+  //__INSTALL_PARTICIPANT_DTO__
+  public static final InstallParticipantDto JOHNV_PARTICIPANT;
+  public static final InstallParticipantDto TOMJ_PARTICIPANT;
+  public static final InstallParticipantDto PAULE_PARTICIPANT;
+  public static final InstallParticipantDto JULIEA_PARTICIPANT;
+  public static final InstallParticipantDto ANTONY_PARTICIPANT;
+
+  static {
+    JOHNV_PARTICIPANT = new InstallParticipantDto();
+    TOMJ_PARTICIPANT = new InstallParticipantDto();
+    PAULE_PARTICIPANT = new InstallParticipantDto();
+    JULIEA_PARTICIPANT = new InstallParticipantDto();
+    ANTONY_PARTICIPANT = new InstallParticipantDto();
+
+    JOHNV_PARTICIPANT.setInstallerId(JOHNV.getId());
+    JOHNV_PARTICIPANT.setName(String.join(" ", JOHNV.getFirstName(), JOHNV.getLastName()));
+    JOHNV_PARTICIPANT.setSlackId(JOHNV.getSlackId());
+
+    TOMJ_PARTICIPANT.setInstallerId(TOMJ.getId());
+    TOMJ_PARTICIPANT.setName(String.join(" ", TOMJ.getFirstName(), TOMJ.getLastName()));
+    TOMJ_PARTICIPANT.setSlackId(TOMJ.getSlackId());
+
+    PAULE_PARTICIPANT.setInstallerId(PAULE.getId());
+    PAULE_PARTICIPANT.setName(String.join(" ", PAULE.getFirstName(), PAULE.getLastName()));
+    PAULE_PARTICIPANT.setSlackId(PAULE.getSlackId());
+
+    JULIEA_PARTICIPANT.setInstallerId(JULIEA.getId());
+    JULIEA_PARTICIPANT.setName(String.join(" ", JULIEA.getFirstName(), JULIEA.getLastName()));
+    JULIEA_PARTICIPANT.setSlackId(JULIEA.getSlackId());
+
+    ANTONY_PARTICIPANT.setInstallerId(ANTONY.getId());
+    ANTONY_PARTICIPANT.setName(String.join(" ", ANTONY.getFirstName(), ANTONY.getLastName()));
+    ANTONY_PARTICIPANT.setSlackId(ANTONY.getSlackId());
+  }
+  
+
   // ___MEMBER___
   public static final Member MEMBER_JOHNV =
     Member.builder()
@@ -272,9 +327,36 @@ public class SampleObjects {
     .status(InstallerStatus.LEAD)
     .build();
 
+  //__INSTALLERDTO__
+  public static final InstallerDto INSTALLERDTO_JOHNV;
+  public static final InstallerDto INSTALLERDTO_TOMJ;
+  public static final InstallerDto INSTALLERDTO_JULIEA;
+
+  static{
+    INSTALLERDTO_JOHNV = new InstallerDto();
+    INSTALLERDTO_TOMJ = new InstallerDto();
+    INSTALLERDTO_JULIEA = new InstallerDto();
+
+    INSTALLERDTO_JOHNV.setId(INSTALLER_JOHNV.getId());
+    INSTALLERDTO_JOHNV.setPerson(JOHNV_COMMAND);
+    INSTALLERDTO_JOHNV.setRoleGivenDate(INSTALLER_JOHNV.getRoleGivenDate());
+    INSTALLERDTO_JOHNV.setStatus(INSTALLER_JOHNV.getStatus().installerStatusName());
+
+    INSTALLERDTO_TOMJ.setId(INSTALLER_TOMJ.getId());
+    INSTALLERDTO_TOMJ.setPerson(TOMJ_COMMAND);
+    INSTALLERDTO_TOMJ.setRoleGivenDate(INSTALLER_TOMJ.getRoleGivenDate());
+    INSTALLERDTO_TOMJ.setStatus(INSTALLER_TOMJ.getStatus().installerStatusName());
+
+    INSTALLERDTO_JULIEA.setId(INSTALLER_JULIEA.getId());
+    INSTALLERDTO_JULIEA.setPerson(JULIEA_COMMAND);
+    INSTALLERDTO_JULIEA.setRoleGivenDate(INSTALLER_JULIEA.getRoleGivenDate());
+    INSTALLERDTO_JULIEA.setStatus(INSTALLER_JULIEA.getStatus().installerStatusName());
+
+  }
+
   // ___NODE___
 
-  public static Node NODE1 = Node.builder()
+  public static final Node NODE1 = Node.builder()
     .id(1)
     .installRequestId(1)
     .status("ACTIVE")
@@ -298,7 +380,7 @@ public class SampleObjects {
     .hardwareSet(Set.of(HARDWARE1, HARDWARE2))
     .build();
 
-  public static Node LAZY_NODE1 = Node.builder()
+  public static final Node LAZY_NODE1 = Node.builder()
     .id(1)
     .installRequestId(1)
     .status("ACTIVE")
@@ -319,8 +401,8 @@ public class SampleObjects {
     .address(ADDRESS2)
     .build();
 
-  //NODE_DTO
-  public static NodeDto NODE_DTO_1;
+  //__NODE_DTO__
+  public static final NodeDto NODE_DTO_1;
 
   static{
     NODE_DTO_1 = new NodeDto();
@@ -332,7 +414,7 @@ public class SampleObjects {
   }
 
   // ___INSTALL___
-  public static Install INSTALL1 = Install.builder()
+  public static final Install INSTALL1 = Install.builder()
     .id(1)
     .installRequestId(1)
     .status("ACTIVE")
@@ -368,67 +450,120 @@ public class SampleObjects {
     .node(NODE3)
     .build();
   
-  //INSTALL_REQUEST_APPOINTMENT
+  //__INSTALL_REQUEST_APPOINTMENT__
+
+  public static final String[] APPT1_TIMES = {"2017-08-17T12:30:00", "2017-08-17T14:30:00"};
+  public static final String[] APPT2_TIMES = {"2017-08-18T08:10:00", "2017-08-18T10:10:00"};
+  public static final String[] APPT3_TIMES = {"2017-08-20T17:45:00", "2017-08-20T20:45:00"};
+
+  public static final boolean APPT1_ISSELECTED = true;
+  public static final boolean APPT2_ISSELECTED = false;
+  public static final boolean APPT3_ISSELECTED = false;
   
   public static final InstallRequestAppointment INSTALL_REQUEST_APPOINTMENT_1 = InstallRequestAppointment.builder()
     .id(1)
     .installRequestId(5)
-    .selected(true)
-    .appointementStartTime(LocalDateTime.parse("2017-08-17T12:30:00"))
-    .appointementEndTime(LocalDateTime.parse("2017-08-17T14:30:00"))
+    .selected(APPT1_ISSELECTED)
+    .appointementStartTime(LocalDateTime.parse(APPT1_TIMES[0]))
+    .appointementEndTime(LocalDateTime.parse(APPT1_TIMES[1]))
     .build();
 
   public static final InstallRequestAppointment INSTALL_REQUEST_APPOINTMENT_2 = InstallRequestAppointment.builder()
     .id(2)
     .installRequestId(5)
-    .appointementStartTime(LocalDateTime.parse("2017-08-18T08:10:00"))
-    .appointementEndTime(LocalDateTime.parse("2017-08-18T10:10:00"))
+    .selected(APPT2_ISSELECTED)
+    .appointementStartTime(LocalDateTime.parse(APPT2_TIMES[0]))
+    .appointementEndTime(LocalDateTime.parse(APPT2_TIMES[1]))
     .build();
 
   public static final InstallRequestAppointment INSTALL_REQUEST_APPOINTMENT_3 = InstallRequestAppointment.builder()
     .id(3)
     .installRequestId(5)
-    .appointementStartTime(LocalDateTime.parse("2017-08-20T17:45:00"))
-    .appointementEndTime(LocalDateTime.parse("2017-08-20T20:45:00"))
+    .selected(APPT3_ISSELECTED)
+    .appointementStartTime(LocalDateTime.parse(APPT3_TIMES[0]))
+    .appointementEndTime(LocalDateTime.parse(APPT3_TIMES[1]))
     .build();
 
+  // __DTO2ENTITY__
+  // SampleObjects containing expected values for NewInstallRequestDto2InstallRequestIT
+  // appt objects of NewInstallRequestDto are new appts; not yet persisted -> no ids
   public static final InstallRequestAppointment INSTALL_REQUEST_APPOINTMENT_DTO2ENTITY_1 
     = InstallRequestAppointment.builder()
     .id(null)
     .installRequestId(null)
-    .appointementStartTime(LocalDateTime.parse("2027-08-20T17:45:00"))
-    .appointementEndTime(LocalDateTime.parse("2027-08-20T20:45:00"))
+    .selected(APPT1_ISSELECTED)
+    .appointementStartTime(LocalDateTime.parse(APPT1_TIMES[0]))
+    .appointementEndTime(LocalDateTime.parse(APPT1_TIMES[1]))
     .build();
 
   public static final InstallRequestAppointment INSTALL_REQUEST_APPOINTMENT_DTO2ENTITY_2 
     = InstallRequestAppointment.builder()
     .id(null)
     .installRequestId(null)
-    .appointementStartTime(LocalDateTime.parse("2027-08-21T17:45:00"))
-    .appointementEndTime(LocalDateTime.parse("2027-08-21T20:45:00"))
+    .selected(APPT2_ISSELECTED)
+    .appointementStartTime(LocalDateTime.parse(APPT2_TIMES[0]))
+    .appointementEndTime(LocalDateTime.parse(APPT2_TIMES[1]))
     .build();
 
-  //INSTALL_REQUEST_APPOINTMENT_DTO
+  //__INSTALL_REQUEST_APPOINTMENT_DTO__ used for new request (NewInstallRequestDto to be converted to InstallRequest) 
   public static final InstallRequestAppointmentDto INSTALL_REQUEST_APPOINTMENT_DTO_1;
   public static final InstallRequestAppointmentDto INSTALL_REQUEST_APPOINTMENT_DTO_2;
+  public static final InstallRequestAppointmentDto INSTALL_REQUEST_APPOINTMENT_DTO_3;
 
   static{
 
     INSTALL_REQUEST_APPOINTMENT_DTO_1 = new InstallRequestAppointmentDto();
     INSTALL_REQUEST_APPOINTMENT_DTO_1.setId(null);
     INSTALL_REQUEST_APPOINTMENT_DTO_1.setInstallRequestId(null);
-    INSTALL_REQUEST_APPOINTMENT_DTO_1.setAppointementStartTime(LocalDateTime.parse("2027-08-20T17:45:00"));
-    INSTALL_REQUEST_APPOINTMENT_DTO_1.setAppointementEndTime(LocalDateTime.parse("2027-08-20T20:45:00"));
+    INSTALL_REQUEST_APPOINTMENT_DTO_1.setSelected(APPT1_ISSELECTED);
+    INSTALL_REQUEST_APPOINTMENT_DTO_1.setAppointementStartTime(LocalDateTime.parse(APPT1_TIMES[0]));
+    INSTALL_REQUEST_APPOINTMENT_DTO_1.setAppointementEndTime(LocalDateTime.parse(APPT1_TIMES[1]));
 
     INSTALL_REQUEST_APPOINTMENT_DTO_2 = new InstallRequestAppointmentDto();
     INSTALL_REQUEST_APPOINTMENT_DTO_2.setId(null);
     INSTALL_REQUEST_APPOINTMENT_DTO_2.setInstallRequestId(null);
-    INSTALL_REQUEST_APPOINTMENT_DTO_2.setAppointementStartTime(LocalDateTime.parse("2027-08-21T17:45:00"));
-    INSTALL_REQUEST_APPOINTMENT_DTO_2.setAppointementEndTime(LocalDateTime.parse("2027-08-21T20:45:00"));
+    INSTALL_REQUEST_APPOINTMENT_DTO_2.setSelected(APPT2_ISSELECTED);
+    INSTALL_REQUEST_APPOINTMENT_DTO_2.setAppointementStartTime(LocalDateTime.parse(APPT2_TIMES[0]));
+    INSTALL_REQUEST_APPOINTMENT_DTO_2.setAppointementEndTime(LocalDateTime.parse(APPT2_TIMES[1]));
 
+    INSTALL_REQUEST_APPOINTMENT_DTO_3 = new InstallRequestAppointmentDto();
+    INSTALL_REQUEST_APPOINTMENT_DTO_3.setId(null);
+    INSTALL_REQUEST_APPOINTMENT_DTO_3.setInstallRequestId(null);
+    INSTALL_REQUEST_APPOINTMENT_DTO_3.setSelected(APPT3_ISSELECTED);
+    INSTALL_REQUEST_APPOINTMENT_DTO_3.setAppointementStartTime(LocalDateTime.parse(APPT3_TIMES[0]));
+    INSTALL_REQUEST_APPOINTMENT_DTO_3.setAppointementEndTime(LocalDateTime.parse(APPT3_TIMES[1]));
   }
 
-  //INSTALL_REQUEST
+  //__INSTALL_REQUEST_APPOINTMENT_DTO__ (persisted versions -> contains ids)
+  public static final InstallRequestAppointmentDto INSTALL_REQUEST_APPOINTMENT_DBDTO_1;
+  public static final InstallRequestAppointmentDto INSTALL_REQUEST_APPOINTMENT_DBDTO_2;
+  public static final InstallRequestAppointmentDto INSTALL_REQUEST_APPOINTMENT_DBDTO_3;
+
+  static{
+
+    INSTALL_REQUEST_APPOINTMENT_DBDTO_1 = new InstallRequestAppointmentDto();
+    INSTALL_REQUEST_APPOINTMENT_DBDTO_1.setId(INSTALL_REQUEST_APPOINTMENT_1.getId());
+    INSTALL_REQUEST_APPOINTMENT_DBDTO_1.setInstallRequestId(INSTALL_REQUEST_APPOINTMENT_1.getInstallRequestId());
+    INSTALL_REQUEST_APPOINTMENT_DBDTO_1.setSelected(APPT1_ISSELECTED);
+    INSTALL_REQUEST_APPOINTMENT_DBDTO_1.setAppointementStartTime(LocalDateTime.parse(APPT1_TIMES[0]));
+    INSTALL_REQUEST_APPOINTMENT_DBDTO_1.setAppointementEndTime(LocalDateTime.parse(APPT1_TIMES[1]));
+
+    INSTALL_REQUEST_APPOINTMENT_DBDTO_2 = new InstallRequestAppointmentDto();
+    INSTALL_REQUEST_APPOINTMENT_DBDTO_2.setId(INSTALL_REQUEST_APPOINTMENT_2.getId());
+    INSTALL_REQUEST_APPOINTMENT_DBDTO_2.setInstallRequestId(INSTALL_REQUEST_APPOINTMENT_2.getInstallRequestId());
+    INSTALL_REQUEST_APPOINTMENT_DBDTO_2.setSelected(APPT2_ISSELECTED);
+    INSTALL_REQUEST_APPOINTMENT_DBDTO_2.setAppointementStartTime(LocalDateTime.parse(APPT2_TIMES[0]));
+    INSTALL_REQUEST_APPOINTMENT_DBDTO_2.setAppointementEndTime(LocalDateTime.parse(APPT2_TIMES[1]));
+    
+    INSTALL_REQUEST_APPOINTMENT_DBDTO_3 = new InstallRequestAppointmentDto();
+    INSTALL_REQUEST_APPOINTMENT_DBDTO_3.setId(INSTALL_REQUEST_APPOINTMENT_3.getId());
+    INSTALL_REQUEST_APPOINTMENT_DBDTO_3.setInstallRequestId(INSTALL_REQUEST_APPOINTMENT_3.getInstallRequestId());
+    INSTALL_REQUEST_APPOINTMENT_DBDTO_3.setSelected(APPT3_ISSELECTED);
+    INSTALL_REQUEST_APPOINTMENT_DBDTO_3.setAppointementStartTime(LocalDateTime.parse(APPT3_TIMES[0]));
+    INSTALL_REQUEST_APPOINTMENT_DBDTO_3.setAppointementEndTime(LocalDateTime.parse(APPT3_TIMES[1]));
+  }
+
+  //__INSTALL_REQUEST__
 
   public static final InstallRequest INSTALL_REQUEST_1 = InstallRequest.builder()
     .id(1)
@@ -510,7 +645,7 @@ public class SampleObjects {
     .preferedAppointmentTimes(Set.of(INSTALL_REQUEST_APPOINTMENT_1, INSTALL_REQUEST_APPOINTMENT_2, INSTALL_REQUEST_APPOINTMENT_3))
     .build();
 
-  //NEW_INSTALL_REQUEST_DTO
+  //__NEW_INSTALL_REQUEST_DTO__
   public static final NewInstallRequestDto NEW_INSTALL_REQUEST_DTO_1;
 
   static{
@@ -518,12 +653,36 @@ public class SampleObjects {
 
     NEW_INSTALL_REQUEST_DTO_1.setRequestType(InstallRequestType.CABLE_RUN.installTypeName());
     NEW_INSTALL_REQUEST_DTO_1.setRequesterPersonId(JOHNV_COMMAND.getId());
-    NEW_INSTALL_REQUEST_DTO_1.setAddress(ADDRESS_DTO_1);
+    NEW_INSTALL_REQUEST_DTO_1.setAddress(ADDRESS_DTO_6);
     NEW_INSTALL_REQUEST_DTO_1.setRequesterNotes("new install request dto 1 notes");
     NEW_INSTALL_REQUEST_DTO_1.setFloorNumber(3);
     NEW_INSTALL_REQUEST_DTO_1.setPreferedAppointmentTimes(List.of(INSTALL_REQUEST_APPOINTMENT_DTO_1, INSTALL_REQUEST_APPOINTMENT_DTO_2));
     NEW_INSTALL_REQUEST_DTO_1.setNodesLos(List.of(NODE_DTO_1.getId()));
-
   }
+
+  //__INSTALL_REQUEST_DTO__
+  public static final InstallRequestDto INSTALL_REQUEST_DTO_5;
+
+  static {
+    INSTALL_REQUEST_DTO_5 = new InstallRequestDto();
+    INSTALL_REQUEST_DTO_5.setId(5);
+    INSTALL_REQUEST_DTO_5.setRequestType(InstallRequestType.CABLE_RUN.installTypeName());
+    INSTALL_REQUEST_DTO_5.setRequesterPerson(JULIEA_COMMAND);
+    INSTALL_REQUEST_DTO_5.setAddress(ADDRESS_DTO_3);
+    INSTALL_REQUEST_DTO_5.setLeadInstaller(JOHNV_PARTICIPANT);
+    INSTALL_REQUEST_DTO_5.setRequesterNotes("Note by JAm2");
+    INSTALL_REQUEST_DTO_5.setLeadNotes("Note by JVi2");
+    INSTALL_REQUEST_DTO_5.setFloorNumber(5);
+    INSTALL_REQUEST_DTO_5.setRequestedDate(LocalDate.parse("2017-08-12"));
+    INSTALL_REQUEST_DTO_5.setClaimedDate(LocalDate.parse("2017-08-13"));
+    //INSTALL_REQUEST_DTO_5.setCompletedDate();
+    INSTALL_REQUEST_DTO_5.setPreferedAppointmentTimes(Set.of(INSTALL_REQUEST_APPOINTMENT_DBDTO_1, INSTALL_REQUEST_APPOINTMENT_DBDTO_2, INSTALL_REQUEST_APPOINTMENT_DBDTO_3));
+    //INSTALL_REQUEST_DTO_5.setNodesLos();
+    INSTALL_REQUEST_DTO_5.setHardwares(Set.of(HARDWARE_DTO_3, HARDWARE_DTO_4));
+    //INSTALL_REQUEST_DTO_5.setAssistantInstallerSet();
+  }
+
+
+
 
 }

@@ -9,7 +9,7 @@ public enum InstallerStatus {
 
   InstallerStatus(String installerStatusName){this.name = installerStatusName;}
 
-  public String installTypeName(){return this.name;}
+  public String installerStatusName(){return this.name;}
 
   public static InstallerStatus fromString(String str) {
     for (InstallerStatus installerStatus : InstallerStatus.values()){

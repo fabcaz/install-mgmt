@@ -39,7 +39,7 @@ public class Installer{
   @Column(name = "id", nullable=false)
   private Integer id;
 
-  @Getter(AccessLevel.NONE)
+  //@Getter(AccessLevel.NONE)
   @OneToOne
   @JoinColumn(name = "person_id", referencedColumnName = "id", nullable=false)
   private Person person;
@@ -50,7 +50,6 @@ public class Installer{
   private LocalDate roleGivenDate;
 
   @NotNull
-  @Positive
   @Convert( converter = InstallerStatusConverter.class )
   @Column(name = "type", nullable=false)
   private InstallerStatus status;

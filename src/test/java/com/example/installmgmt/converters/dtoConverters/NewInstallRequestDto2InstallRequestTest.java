@@ -1,6 +1,8 @@
 package com.example.installmgmt.converters.dtoConverters;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -26,7 +28,7 @@ import com.example.installmgmt.services.NodeServiceImpl;
 import com.example.installmgmt.services.PersonService;
 import com.example.installmgmt.services.PersonServiceImpl;
 
-public class NewInstallRequestDto2InstallRequestIT {
+public class NewInstallRequestDto2InstallRequestTest {
 
   //repositories
   private static  PersonRepository personRepository;
@@ -52,10 +54,10 @@ public class NewInstallRequestDto2InstallRequestIT {
   private static Person2PersonDto person2PersonDto;
   private static PersonDto2Person personDto2Person;
 
-  private static NewInstallRequestDto2InstallRequest newInstallRequestDto2InstallRequest;
+  private static NewInstallRequestDto2InstallRequest converter;
 
   @BeforeAll
-  public static void setupSingletons(){
+  public static void setup(){
 
     //repositories
     personRepository = mock(PersonRepository.class);
@@ -82,13 +84,25 @@ public class NewInstallRequestDto2InstallRequestIT {
     personService = new PersonServiceImpl(personRepository, person2PersonDto, personDto2Person);
     nodeService = new NodeServiceImpl(nodeRepository, node2NodeDto, nodeDto2Node);
 
-    newInstallRequestDto2InstallRequest = 
+    converter = 
       new NewInstallRequestDto2InstallRequest(personService,
           nodeService, 
           personDto2Person, 
           addressDto2Address,
           dto2appointment, 
           nodeDto2Node);
+  }
+
+  @Test
+  @DisplayName("should return null for null arg")
+  void shouldReturnNullForNullArg(){
+    assertNull(converter.convert(null));
+  }
+
+  @Test
+  @DisplayName("should return not null for emtpy object")
+  void shouldReturnNotNullForNullArg(){
+    assertNotNull(converter.convert(new NewInstallRequestDto()));
   }
 
   @Test
@@ -108,12 +122,12 @@ public class NewInstallRequestDto2InstallRequestIT {
       .requesterPerson(SampleObjects.JOHNV)
       .requesterNotes(source.getRequesterNotes())
       .floorNumber(source.getFloorNumber())
-      .address(SampleObjects.ADDRESS_DTO2ENTITY_1)
+      .address(SampleObjects.ADDRESS_DTO2ENTITY_6)
       .preferedAppointmentTimes(Set.of(SampleObjects.INSTALL_REQUEST_APPOINTMENT_DTO2ENTITY_1, SampleObjects.INSTALL_REQUEST_APPOINTMENT_DTO2ENTITY_2))
       .nodesLosSet(Set.of(SampleObjects.NODE1))
       .build();
 
-    InstallRequest actual = newInstallRequestDto2InstallRequest.convert(source);
+    InstallRequest actual = converter.convert(source);
 
     //the requested date is created by the Converter#convert using LocalDateTime.now()
     expected.setRequestedDate(actual.getRequestedDate());

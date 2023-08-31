@@ -40,12 +40,12 @@ public class InstallRequestAppointment{
   @Builder.Default
   private Boolean selected = false;
 
-  @FutureOrPresent
+  //@FutureOrPresent
   @Column(name = "appointement_start_time", nullable=false)
   @Setter(AccessLevel.NONE)
   private LocalDateTime appointementStartTime;
 
-  @FutureOrPresent
+  //@FutureOrPresent
   @Column(name = "appointement_end_time", nullable=false)
   @Setter(AccessLevel.NONE)
   private LocalDateTime appointementEndTime;

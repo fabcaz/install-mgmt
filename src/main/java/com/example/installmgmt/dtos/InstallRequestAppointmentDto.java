@@ -27,9 +27,9 @@ public class InstallRequestAppointmentDto {
   @NotNull
   private Boolean selected = false;
 
-  @FutureOrPresent
+  //@FutureOrPresent
   private LocalDateTime appointementStartTime;
 
-  @FutureOrPresent
+  //@FutureOrPresent
   private LocalDateTime appointementEndTime;
 }

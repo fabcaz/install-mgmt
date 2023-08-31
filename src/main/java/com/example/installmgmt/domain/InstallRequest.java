@@ -61,7 +61,7 @@ public class InstallRequest{
   private Address address;
 
   @ManyToOne
-  @JoinColumn(name = "lead_installer_id", referencedColumnName = "id", nullable=false)
+  @JoinColumn(name = "lead_installer_id", referencedColumnName = "id")
   private Installer leadInstaller;
 
   @Column(name ="requester_notes", nullable = false)
@@ -105,6 +105,8 @@ public class InstallRequest{
   @Builder.Default
   private Set<Node> nodesLosSet = new HashSet<>(0);
 
+  @Getter(AccessLevel.NONE)
+  @Setter(AccessLevel.NONE)
   @ManyToMany(fetch = FetchType.LAZY)
   @JoinTable(
     name = "INSTALL_REQUEST_X_HARDWARE",
@@ -119,6 +121,8 @@ public class InstallRequest{
      most likely reason to fetch one may be to change the participant list so
      eager load participants.
   */
+  @Getter(AccessLevel.NONE)
+  @Setter(AccessLevel.NONE)
   @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(
     name = "INSTALL_REQUEST_PARTICIPANT",
@@ -138,10 +142,10 @@ public class InstallRequest{
     log.debug("Marking InstallRequest[{}] as completed; clearing nodesLosSet and preferedAppointmentTimes", this.id);
 
     if(this.nodesLosSet != null && !this.nodesLosSet.isEmpty()){
-      this.nodesLosSet = new HashSet<>(0);
+      this.nodesLosSet.clear();
     }
     if(this.preferedAppointmentTimes != null && !this.preferedAppointmentTimes.isEmpty()){
-      this.preferedAppointmentTimes = new HashSet<>(0);
+      this.preferedAppointmentTimes.clear();
     }
 
     this.completedDate = completedDate;
@@ -151,10 +155,12 @@ public class InstallRequest{
    * @return unmodifiable list to avoid adding elements after (@link InstallRequest} completion
    */
   public Set<InstallRequestAppointment> getPreferedAppointmentTimes(){
-    if(this.preferedAppointmentTimes == null){
+    if(this.preferedAppointmentTimes == null || this.completedDate != null){
       return Set.of();
     }else{
-      return Set.copyOf(this.preferedAppointmentTimes);
+      Set<InstallRequestAppointment> res = new HashSet<>(this.preferedAppointmentTimes.size());
+      res.addAll(this.preferedAppointmentTimes);
+      return res;
     }
   }
 
@@ -169,20 +175,24 @@ public class InstallRequest{
       log.debug("Cannot setup appointment for a completed InstallRequest{}", "");
       return;      
     }
-    //to avoid setting unmodifiable set
-    Set<InstallRequestAppointment> newSet = new HashSet<>(preferedAppointmentTimes.size());
-    newSet.addAll(preferedAppointmentTimes);
-    this.preferedAppointmentTimes = newSet;
+
+    this.preferedAppointmentTimes.clear();
+
+    if (preferedAppointmentTimes != null && !preferedAppointmentTimes.isEmpty()) {
+      this.preferedAppointmentTimes.addAll(preferedAppointmentTimes);
+    }
   }
 
   /**
    * @return unmodifiable set to avoid adding elements after (@link InstallRequest} completion
    */
   public Set<Node> getNodesLosSet(){
-    if (this.nodesLosSet == null) {
+    if (this.nodesLosSet == null || this.completedDate != null) {
       return Set.of();      
     }else{
-      return Set.copyOf(this.nodesLosSet);
+      Set<Node> res = new HashSet<>(this.nodesLosSet.size());
+      res.addAll(this.nodesLosSet);
+      return res;
     }
   }
   /**
@@ -196,10 +206,51 @@ public class InstallRequest{
       log.debug("Cannot set los set for a completed InstallRequest{}", "");
       return;      
     }
-    //to avoid setting unmodifiable set
-    Set<Node> newSet = new HashSet<>(nodesLosSet.size());
-    newSet.addAll(nodesLosSet);
-    this.nodesLosSet = newSet;
+
+    this.nodesLosSet.clear();
+
+    if (nodesLosSet != null && !nodesLosSet.isEmpty()) {
+      this.nodesLosSet.addAll(nodesLosSet);
+    }
   }
+
+  public Set<Hardware> getHardwareSet(){
+    if (this.hardwareSet == null) {
+      return new HashSet<>(0);
+    }else{
+      Set<Hardware> res = new HashSet<>(this.hardwareSet.size());
+      res.addAll(this.hardwareSet);
+      return res;
+    }
+  }
+
+  public void setHardwareSet(Set<Hardware> hardwareSet){
+
+    this.hardwareSet.clear();
+
+    if (hardwareSet != null && !hardwareSet.isEmpty()) {
+      this.hardwareSet.addAll(hardwareSet);
+    }
+  }
+
+  public Set<Installer> getAssistantInstallerSet(){
+    if (this.assistantInstallerSet == null) {
+      return new HashSet<>(0);
+    }else{
+      Set<Installer> res = new HashSet<>(this.assistantInstallerSet.size());
+      res.addAll(this.assistantInstallerSet);
+      return res;
+    }
+  }
+
+  public void setAssistantInstallerSet(Set<Installer> assistantInstallerSet){
+
+    this.assistantInstallerSet.clear();
+
+    if (assistantInstallerSet != null && !assistantInstallerSet.isEmpty()) {
+      this.assistantInstallerSet.addAll(assistantInstallerSet);
+    }
+  }
+
 
 }

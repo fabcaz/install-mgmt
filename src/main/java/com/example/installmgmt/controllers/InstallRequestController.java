@@ -1,5 +1,6 @@
 package com.example.installmgmt.controllers;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,7 +38,7 @@ public class InstallRequestController {
 
 
   @GetMapping(INSTALLREQUEST_GET_MULT_FIND_BY_ID)
-  public List<InstallRequestDto> getInstallRequests(){
+  public List<InstallRequestDto> getInstallRequests(Authentication auth){
     return installRequestService.findAll();
   }
 

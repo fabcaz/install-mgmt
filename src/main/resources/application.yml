@@ -35,4 +35,5 @@ logging:
 server:
   port: 8081
 
+jwksUri: http://localhost:8080/oauth2/jkws
 
